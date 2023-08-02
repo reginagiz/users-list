@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface PaginationProps {
   totalCount: number | undefined;
   itemsPerPage: number;
@@ -8,19 +10,33 @@ const Pagination: React.FC<PaginationProps> = ({
   itemsPerPage,
   setCurrentPage,
 }) => {
-  const totalPages = Math.ceil((totalCount || 0) / itemsPerPage);
-  const totalPagesLength = { length: totalPages < 5 ? totalPages : 5 };
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+  const totalPages = Math.ceil((totalCount || 0) / itemsPerPage);
+  const totalPagesArr = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  const displayArray = totalPagesArr.slice(currentIndex, currentIndex + 5);
+
+  const handleClickNext = () => {
+    setCurrentIndex((prevIndex: number) =>
+      prevIndex >= totalPagesArr.length - 5 ? prevIndex : prevIndex + 5
+    );
   };
+  const handleClickBack = () => {
+    setCurrentIndex((prevIndex: number) =>
+      prevIndex >= 5 ? prevIndex - 5 : 0
+    );
+  };
+
   return (
     <div>
-      {Array.from(totalPagesLength).map((_, index) => (
-        <button key={index + 1} onClick={() => handlePageChange(index + 1)}>
-          {index + 1}
+      <button onClick={handleClickBack}>Back</button>
+      {displayArray.map((value, index) => (
+        <button key={index} onClick={() => setCurrentPage(value)}>
+          {value}
         </button>
       ))}
+      <button onClick={handleClickNext}>Next</button>
     </div>
   );
 };
