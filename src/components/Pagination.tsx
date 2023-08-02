@@ -30,13 +30,13 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div>
-      <button onClick={handleClickBack}>Back</button>
+      <button onClick={handleClickBack}>{"<"}</button>
       {displayArray.map((value, index) => (
         <button key={index} onClick={() => setCurrentPage(value)}>
           {value}
         </button>
       ))}
-      <button onClick={handleClickNext}>Next</button>
+      <button onClick={handleClickNext}>{">"}</button>
     </div>
   );
 };
