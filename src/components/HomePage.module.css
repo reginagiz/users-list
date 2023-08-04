@@ -1,0 +1,12 @@
+.homepage {
+  min-width: 100%;
+}
+.homepage_container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 320px;
+  padding: 1rem;
+}
