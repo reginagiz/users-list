@@ -17,14 +17,14 @@ const HomePage = () => {
   const [login, setLogin] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<"asc" | "desc">("asc");
-  const [itemsPerPage, setItemsPerPagey] = useState<5 | 10 | 15>(5);
+  const [itemsPerPage, setItemsPerPage] = useState<5 | 10 | 15>(5);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const { data, loading, error } = useRequest<UsersData>(
-    `https://api.github.com/search/users?q=${login}&sort=repositories&order=${selectedOption}&per_page=${itemsPerPage}&page=${currentPage}`
+    `https://api.github.com/search/users?q=${login}&sort=repositories&order=${selectedOption}&per_page=${itemsPerPage}&page=${currentPage}`,
+    login
   );
-  console.log(data?.items);
-
+  console.log(data);
   return (
     <div className={s.homepage}>
       <div className={s.homepage_container}>
@@ -40,20 +40,33 @@ const HomePage = () => {
         />
         <ItemsPerPage
           itemsPerPage={itemsPerPage}
-          setItemsPerPage={setItemsPerPagey}
+          setItemsPerPage={setItemsPerPage}
         />
-        <div>
-          {data?.items?.map((item: User) => (
-            <div key={item.id}>
-              <UserCard login={item.login} />
-            </div>
-          ))}
-        </div>
-        <Pagination
-          totalCount={data?.total_count}
-          itemsPerPage={itemsPerPage}
-          setCurrentPage={setCurrentPage}
-        />
+        {loading ? (
+          <div>Loading...</div>
+        ) : data?.items?.length === 0 ? (
+          <div>
+            Sorry for the user with such a login was not found. Make sure you
+            indicated the correct login.
+          </div>
+        ) : (
+          <div>
+            {data?.items?.map((item: User) => (
+              <div key={item.id}>
+                <UserCard login={item.login} />
+              </div>
+            ))}
+          </div>
+        )}
+        {data === null || data?.items?.length === 0 ? (
+          <div></div>
+        ) : (
+          <Pagination
+            totalCount={data?.total_count}
+            itemsPerPage={itemsPerPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </div>
     </div>
   );
