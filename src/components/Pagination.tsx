@@ -1,4 +1,5 @@
 import { useState } from "react";
+import s from "./HomePage.module.css";
 
 interface PaginationProps {
   totalCount: number | undefined;
@@ -29,14 +30,22 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div>
-      <button onClick={handleClickBack}>{"<"}</button>
+    <div className={s.pagination}>
+      <button onClick={handleClickBack} className={s.pagination_scroll_button}>
+        &larr; Prev
+      </button>
       {displayArray.map((value, index) => (
-        <button key={index} onClick={() => setCurrentPage(value)}>
+        <button
+          key={index}
+          onClick={() => setCurrentPage(value)}
+          className={s.pagination_number_page_button}
+        >
           {value}
         </button>
       ))}
-      <button onClick={handleClickNext}>{">"}</button>
+      <button onClick={handleClickNext} className={s.pagination_scroll_button}>
+        Next &rarr;
+      </button>
     </div>
   );
 };
