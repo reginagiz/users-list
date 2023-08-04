@@ -8,16 +8,17 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({ login }) => {
   const { data, loading, error } = useRequest<User>(
-    `https://api.github.com/users/${login}`
+    `https://api.github.com/users/${login}`,
+    login
   );
-  console.log(data);
+
   return (
     <div className={s.user}>
       <div className={s.img_container}>
         <img src={data?.avatar_url} alt="user_avatar"></img>
       </div>
       <div className={s.user_info}>
-        <h2>{data?.login}</h2>
+        <h3>{data?.login}</h3>
         <div>{data?.name}</div>
       </div>
     </div>
