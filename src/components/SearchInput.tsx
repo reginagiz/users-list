@@ -1,4 +1,5 @@
 import React from "react";
+import s from "./HomePage.module.css";
 
 interface InputItemsProps {
   inputValue: string;
@@ -22,11 +23,19 @@ const SearchInput: React.FC<InputItemsProps> = ({
   };
 
   return (
-    <div>
-      <input value={inputValue} name="login" onChange={handleInputChange} />
-      <button type="submit" onClick={handleButtonClick}>
-        Search
-      </button>
+    <div className={s.search_component}>
+      <input
+        value={inputValue}
+        name="login"
+        onChange={handleInputChange}
+        className={s.search_input}
+        placeholder="Search..."
+      />
+      <button
+        type="submit"
+        onClick={handleButtonClick}
+        className={s.search_button}
+      ></button>
     </div>
   );
 };
