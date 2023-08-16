@@ -1,0 +1,91 @@
+.homepage {
+  min-width: 100%;
+}
+.homepage_container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 320px;
+  padding: 1rem;
+}
+.search_component {
+  display: flex;
+}
+.search_input {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-right: none;
+  padding: 0.5rem;
+  width: 17rem;
+  border-color: #087af7;
+}
+.search_button {
+  width: 2rem;
+  padding: 0.3rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background-image: url("../../images/magnifying-glass.svg");
+  background-repeat: no-repeat;
+  background-color: #087af7;
+  border-color: #087af7;
+  background-position: center;
+  background-origin: content-box;
+}
+.sort_component,
+.items_per_page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 0.3rem;
+}
+.sort_component_buttons,
+.items_per_page_buttons {
+  display: flex;
+  margin-top: 0.3rem;
+}
+.sort_component_buttons:first-child label {
+  margin-left: 1rem;
+}
+.sort_component_buttons label {
+  border: 0.1rem solid #087af7;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  width: 7rem;
+}
+.items_per_page_buttons label {
+  border: 0.1rem solid #087af7;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  width: 3rem;
+  margin-left: 1rem;
+}
+.items_per_page {
+  margin-bottom: 1rem;
+}
+.pagination {
+  display: flex;
+  margin-top: 1rem;
+}
+.pagination_scroll_button,
+.pagination_number_page_button {
+  border: 0.1rem solid #087af7;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  margin-left: 0.3rem;
+}
+.pagination_number_page_button {
+  width: 2rem;
+}
+.pagination_scroll_button {
+  background-color: #087af7;
+  color: white;
+  width: 4rem;
+}
+.pagination_number_page_button:focus {
+  background-color: #087af7;
+  color: white;
+}
