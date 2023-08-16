@@ -1,11 +1,11 @@
 import { useState } from "react";
-import useRequest from "../custom_hooks/useRequest";
-import { User } from "../types";
-import SortComponent from "./SortComponent";
-import ItemsPerPage from "./ItemsPerPage";
-import SearchInput from "./SearchInput";
-import Pagination from "./Pagination";
-import UserCard from "./UserCard";
+import useRequest from "../../custom_hooks/useRequest";
+import { User } from "../../types";
+import SortComponent from "../sort_component/SortComponent";
+import ItemsPerPage from "../items_per_page/ItemsPerPage";
+import SearchInput from "../search_input/SearchInput";
+import Pagination from "../pagination/Pagination";
+import UserCard from "../user_card/UserCard";
 import s from "./HomePage.module.css";
 
 interface UsersData {
@@ -24,9 +24,9 @@ const HomePage = () => {
     `https://api.github.com/search/users?q=${login}&sort=repositories&order=${selectedOption}&per_page=${itemsPerPage}&page=${currentPage}`,
     login
   );
-  console.log(data);
+
   return (
-    <div className={s.homepage}>
+    <div className={s.homepage} data-testid="homepage">
       <div className={s.homepage_container}>
         <SearchInput
           setLogin={setLogin}

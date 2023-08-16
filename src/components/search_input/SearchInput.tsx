@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./HomePage.module.css";
+import s from "../home_page/HomePage.module.css";
 
 interface InputItemsProps {
   inputValue: string;
